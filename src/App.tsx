@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { SearchPage } from './pages/SearchPage';
+import { ReducerPage } from './pages/ReducerPage';
 
 function App() {
+  const [page, setPage] = React.useState<'search' | 'reducer'>('search');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.Fragment>
+      <nav>
+        <button 
+          onClick={() => {setPage('search')}}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Search
+        </button>
+        <button 
+          onClick={() => {setPage('reducer')}}
+        >
+          Reducer
+        </button>
+      </nav>
+      <main className="App">
+        {page === 'search' && (
+          <SearchPage />
+        )}
+        {page === 'reducer' && (
+          <ReducerPage />  
+        )}
+      </main>
+    </React.Fragment>
   );
 }
 
